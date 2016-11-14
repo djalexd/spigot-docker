@@ -13,9 +13,6 @@ RUN apt-get -y update && \
 # Download BuildTools.jar
 RUN wget -q https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
 
-# Set some git config
-RUN git config --global --unset core.autocrlf
-
 # Build the Jar 
 RUN java -jar BuildTools.jar --rev ${MC-VERSION}
 
