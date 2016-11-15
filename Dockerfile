@@ -4,7 +4,7 @@ FROM java:openjdk-7-jre
 
 MAINTAINER Noah Prail <noah@prail.net>
 
-ENV MC-VERSION 1.10.2
+ENV MC_VERSION 1.10.2
 
 RUN apt-get -y update && \
     apt-get -y install wget git && \
@@ -12,17 +12,18 @@ RUN apt-get -y update && \
 
 
 RUN mkdir -p /tmp/sp
-RUN mkdir -p /mcdata
+RUN mkdir -p /data
 
 WORKDIR /tmp/sp
 # Download BuildTools.jar
 RUN wget -q https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
 
 # Build the Jar 
-RUN java -jar BuildTools.jar --rev ${MC-VERSION}
+RUN java -jar BuildTools.jar --rev ${MC_VERSION}
 
-RUN cp spigot-${MC-VERSION}.jar /
+RUN cp spigot-${MC_VERSION}.jar /data/
 
+WORKDIR /data
 
 # Expose the container's network port: 25565 during runtime.
 EXPOSE 25565
@@ -30,4 +31,4 @@ EXPOSE 25565
 # Automatically accept Minecraft EULA, and start Minecraft server
 ENV JVM_OPTS -Xmx1024M -Xms1024M
 VOLUME [ "/mcdata" ]
-CMD echo eula=true > /data/eula.txt && java -jar /spigot-${MC-VERSION}.jar
+CMD echo eula=true > /data/eula.txt && java -jar /data/spigot-${MC_VERSION}.jar
