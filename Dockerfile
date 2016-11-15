@@ -21,7 +21,7 @@ RUN wget -q https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/
 # Build the Jar 
 RUN java -jar BuildTools.jar --rev ${MC_VERSION}
 
-RUN cp spigot-${MC_VERSION}.jar /data/
+RUN cp spigot-${MC_VERSION}.jar /mcdata/
 
 WORKDIR /mcdata
 
