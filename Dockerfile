@@ -12,7 +12,7 @@ RUN apt-get -y update && \
 
 
 RUN mkdir -p /tmp/sp
-RUN mkdir -p /data
+RUN mkdir -p /mcdata
 
 WORKDIR /tmp/sp
 # Download BuildTools.jar
@@ -23,7 +23,7 @@ RUN java -jar BuildTools.jar --rev ${MC_VERSION}
 
 RUN cp spigot-${MC_VERSION}.jar /data/
 
-WORKDIR /data
+WORKDIR /mcdata
 
 # Expose the container's network port: 25565 during runtime.
 EXPOSE 25565
@@ -31,4 +31,4 @@ EXPOSE 25565
 # Automatically accept Minecraft EULA, and start Minecraft server
 ENV JVM_OPTS -Xmx1024M -Xms1024M
 VOLUME [ "/mcdata" ]
-CMD echo eula=true > /data/eula.txt && java -jar /data/spigot-${MC_VERSION}.jar
+CMD echo eula=true > /mcdata/eula.txt && java -jar /mcdata/spigot-${MC_VERSION}.jar
