@@ -2,7 +2,7 @@ FROM java:openjdk-7-jre
 
 MAINTAINER Noah Prail <noah@prail.net>
 
-ENV MC_VERSION 1.10.2
+ENV MC_VERSION 1.11.2
 
 RUN apt-get -y update && \
     apt-get -y install wget git && \
