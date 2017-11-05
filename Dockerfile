@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jre
+FROM jpizarrom/armv7hf-java:oracle-java8
 
 MAINTAINER Hexagon MC <admin@hexagonminecraft.com>
 
