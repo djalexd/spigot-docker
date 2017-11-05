@@ -2,12 +2,9 @@ FROM jpizarrom/armv7hf-java:oracle-java8-201703161
 
 MAINTAINER Hexagon MC <admin@hexagonminecraft.com>
 
-ENV MC_VERSION 1.11.2
+ARG MC_VERSION=1.11.2
 
-RUN apt-get -y update && \
-    apt-get --no-install-recommends -y install wget git && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update && apt-get --no-install-recommends -y install wget git
 
 RUN mkdir -p /tmp/sp && \
     mkdir -p /mcdata
@@ -29,4 +26,4 @@ ENV JVM_OPTS -Xmx1024M -Xms1024M -XX:MaxPermSize=128M
 
 VOLUME [ "/mcdata" ]
 
-CMD java -Xmx1024M -Xms1024M -XX:MaxPermSize=128M -jar spigot-${MC_VERSION}.jar
+CMD java ${JVM_OPTS} -jar spigot-${MC_VERSION}.jar
