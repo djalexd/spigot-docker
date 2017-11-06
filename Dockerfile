@@ -1,4 +1,4 @@
-FROM jpizarrom/armv7hf-java:oracle-java8-201703161
+FROM oysteinjakobsen/armv7-oracle-java8
 
 MAINTAINER Hexagon MC <admin@hexagonminecraft.com>
 
